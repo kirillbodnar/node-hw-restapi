@@ -1,3 +1,4 @@
 const RequestError = require("./RequestError");
+const handleSchemaValidationErrors = require("./handleSchemavalidationErrors");
 
-module.exports = { RequestError };
+module.exports = { RequestError, handleSchemaValidationErrors };
