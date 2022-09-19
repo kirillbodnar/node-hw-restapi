@@ -4,7 +4,15 @@ const router = express.Router();
 
 const controller = require("../../controllers/auth");
 const { ctrlWrapper } = require("../../helpers");
-const { register, login, logout, current, updateAvatar } = controller;
+const {
+  register,
+  login,
+  logout,
+  current,
+  updateAvatar,
+  verifyEmail,
+  resendEmailVerification,
+} = controller;
 
 const { validationBody, authentication, upload } = require("../../middlewares");
 
@@ -29,3 +37,11 @@ router.patch(
 );
 
 router.get("/current", authentication, ctrlWrapper(current));
+
+router.get("/verify/:verificationToken", ctrlWrapper(verifyEmail));
+
+router.post(
+  "verify",
+  validationBody(schemas.verifyEmailSchema),
+  ctrlWrapper(resendEmailVerification)
+);
